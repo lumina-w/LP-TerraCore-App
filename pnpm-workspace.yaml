@@ -17,3 +17,16 @@ overrides:
   # (a session-storage driver, unrelated to the @astrojs/netlify adapter we
   # removed), vulnerable to GHSA-8988-4f7v-96qf. Force the patched line.
   '@opentelemetry/core': '>=2.8.0'
+  # The three below are transitive only: nothing here depends on them directly,
+  # and no direct dependency has shipped a release that moves off the vulnerable
+  # range yet, so `pnpm audit --audit-level=high` fails CI on every branch until
+  # they are pinned. Drop each entry once the parents catch up.
+  # brace-expansion (GHSA-mh99-v99m-4gvg, GHSA-rgw5-rvv9-x895) only ever reaches
+  # us under minimatch, on two majors at once (eslint pulls minimatch 10,
+  # serve>serve-handler pulls minimatch 3). Scoping the override to that parent
+  # covers both without forcing the version on any future direct dependent.
+  'minimatch>brace-expansion': '>=5.0.9'
+  # fast-uri (GHSA-v2hh-gcrm-f6hx, GHSA-7p8r-x3mc-p8w7), host confusion.
+  'fast-uri@<3.1.5': '>=3.1.5'
+  # undici (GHSA-4cwx-7wf7-3272), cross-user information disclosure.
+  'undici@<7.29.0': '>=7.29.0'
