@@ -94,7 +94,7 @@ export const PLANS: Plan[] = [
     cta: 'Quiero el plan Profesional',
     ctaHref: '/#demo',
     featured: true,
-    operationSize: 'Mediana (2 a 3 sedes, hasta 15 personas)',
+    operationSize: 'Mediana (hasta 5 sedes, hasta 10 personas)',
   },
   {
     name: 'Enterprise',
